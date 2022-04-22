@@ -49,6 +49,7 @@ $input-width: 340px
   width: 350px
   height: 360px
   padding: 10px
+
   border: 1px solid black
   border-radius: 6px
 
@@ -67,7 +68,7 @@ $input-width: 340px
     box-sizing: border-box
     width: $input-width + 8px
     height: 200px
-    resize: none
     padding: 5px
+    resize: none
 
 </style>
