@@ -12,6 +12,8 @@ import CommonHeader from "@/views/CommonHeader.vue"
 
 <style scoped lang="sass">
 .common-layout
+  width: 100vw
+  max-width: 100%
   margin: 0
   padding: 0
 </style>

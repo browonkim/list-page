@@ -14,6 +14,7 @@
 .app-header
   box-sizing: border-box
   width: 100vw
+  max-width: 100%
   height: 40px
   padding-top: 8px
   padding-left: 5px
