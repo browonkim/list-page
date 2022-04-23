@@ -23,5 +23,8 @@
 
   header
     h1
+      font-family: 'libre bodoni', 'sans-serif'
       font-size: 25px
+      color: rgb(19, 86, 58)
+      margin-left: 3px
 </style>
