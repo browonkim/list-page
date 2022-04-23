@@ -1,16 +1,16 @@
 <template>
   <div class="item-card">
-    <h2>{{ props.title }}</h2>
+    <h2>{{ props.listItem.title }}</h2>
     <div class="tag-container">
-      <mark v-for="tag in props.tags" :key="tag">{{ tag }}</mark>
+      <mark v-for="tag in props.listItem.tags" :key="tag">{{ tag }}</mark>
     </div>
-    <p class="summary">{{ props.description }}</p>
+    <p class="summary">{{ props.listItem.description?.substring(0, 10) }}</p>
     <footer>
       <div class="button-container">
         <button class="edit-button">Edit</button>
         <button class="delete-button">Delete</button>
       </div>
-      <p class="created-at">{{ props.createdAt }}</p>
+      <p class="created-at">{{ props.listItem.createdAt }}</p>
     </footer>
   </div>
 </template>
@@ -32,7 +32,10 @@ interface ListItem {
   tags?: string[],
   createdAt?: string
 }
-const props = defineProps<ListItem>()
+interface cardContent {
+  listItem: ListItem
+}
+const props = defineProps<cardContent>()
 </script>
 
 <style scoped lang="sass">
