@@ -57,11 +57,11 @@ function onModalCancel() {
   deactivateModal()
 }
 
-function onModalConfirm(action: CRUD, modifiedData: ListItem) {
+function onModalConfirm(action: CRUD, data: ListItem) {
   if (action === CRUD.update) {
-    updateItem(modifiedData)
+    updateItem(data)
   } else if (action === CRUD.create) {
-    //todo
+    createItem(data)
   }
   modalProperties.value.active = false
   updateList()
