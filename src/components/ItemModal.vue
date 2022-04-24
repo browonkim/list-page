@@ -1,13 +1,13 @@
 <template>
   <teleport to="body">
-    <div class="modal-container" v-show="isActivate" @wheel.prevent>
-      <div class="item-modal" @activate="activateModal">
-        <h2>{{ getHeaderLabel() }}</h2>
-        <input placeholder="Title" class="input-title">
-        <textarea placeholder="Description" class="input-description"></textarea>
+    <div class="modal-container" v-show="props.active" @wheel.prevent>
+      <div class="item-modal">
+        <h2>{{ headerLabel }}</h2>
+        <input placeholder="Title" class="input-title" v-model="localTitle">
+        <textarea placeholder="Description" class="input-description" v-model="localDescription"></textarea>
         <div class="button-container">
-          <button @click="cancelModal">CANCEL</button>
-          <button>{{ getOkButtonLabel() }}</button>
+          <button @click="onCancel">CANCEL</button>
+          <button @click="onConfirm">{{ getOkButtonLabel() }}</button>
         </div>
       </div>
     </div>
@@ -25,16 +25,43 @@ interface ModalProps {
 }
 
 const props = defineProps<ModalProps>()
+const emits = defineEmits<{
+  (e: 'cancel'): void
+  (e: 'confirm', action: CRUD, listItem: ListItem): void
+}>()
 
-const isActivate = ref(false)
+const localTitle = ref(props.item.title)
+const localDescription = ref(props.item.description)
 
-function getHeaderLabel() {
+watchEffect(() => {
+  if (props.active) {
+    localTitle.value = props.item.title
+    localDescription.value = props.item.description
+  }
+  else {
+    localTitle.value = ''
+    localDescription.value = ''
+  }
+})
+
+const headerLabel = computed(() => {
   if (props.action === CRUD.create) {
     return 'Add Item'
   } else if (props.action === CRUD.update) {
     return 'Edit Item'
   }
-}
+  return ''
+})
+
+const modifiedItem = computed(() => {
+  return {
+    id: props.item.id,
+    title: localTitle.value,
+    description: localDescription.value,
+    tags: props.item.tags,
+    createdAt: props.item.createdAt
+  } as ListItem
+})
 
 function getOkButtonLabel() {
   if (props.action === CRUD.create) {
@@ -44,8 +71,8 @@ function getOkButtonLabel() {
   }
 }
 
-function activateModal() {
-  isActivate.value = true;
+function onCancel() {
+  emits('cancel')
 }
 
 function onConfirm() {
