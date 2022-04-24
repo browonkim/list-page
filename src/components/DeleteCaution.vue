@@ -3,8 +3,8 @@
     <div class="modal-container" v-show="props.active">
       <div class="delete-caution">
         <h2>Are you sure you want to delete?</h2>
-        <button @click="onCancel">CANCEL</button>
-        <button @click="onDelete">DELETE</button>
+        <button class="ui-font" @click="onCancel">CANCEL</button>
+        <button class="ui-font" @click="onDelete">DELETE</button>
       </div>
     </div>
   </teleport>
@@ -41,4 +41,6 @@ function onDelete() {
 
   h2
     font-size: 18px
+    font-family: 'nanum gothic', 'sans-serif'
+
 </style>
