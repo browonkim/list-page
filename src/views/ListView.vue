@@ -1,6 +1,6 @@
 <template>
   <div class="list-view">
-    <button class="add-item-button"> Add </button>
+    <button class="add-item-button" @click="onClickAddButton"> Add</button>
     <DeleteCaution :active="deleteCautionActivate" :resolve="deleteCautionResolve" :reject="deleteCautionReject"/>
     <ItemModal :action="modalProperties.action" :active="modalProperties.active" :item="modalProperties.item"
                @cancel="onModalCancel" @confirm="onModalConfirm"/>
@@ -37,6 +37,10 @@ const deleteCautionReject = ref<() => void>(() => {
 onMounted(() => {
   listItems.value = getData()
 })
+
+function onClickAddButton() {
+  activateModal(undefined, CRUD.create, '', '', [])
+}
 
 function onModalCancel() {
   deactivateModal()
