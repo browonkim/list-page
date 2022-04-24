@@ -2,7 +2,9 @@
   <div>
     <ItemModal/>
     <div class="list-container">
-      <ItemCard v-for="item in listItems" :key="item.id" :listItem="item" class="list-item"/>
+      <ItemCard v-for="item in listItems" :key="item.id" :listItem="item" class="list-item"
+                @edit="onCardEdit(item.id)"
+                @delete="onCardDelete(item.id)"/>
     </div>
   </div>
 </template>
