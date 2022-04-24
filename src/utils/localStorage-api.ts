@@ -1,7 +1,14 @@
 import {ListItem} from "@/types/common-types";
+import moment from "moment";
 
 export function createItem(newItem: ListItem) {
     const data = getData()
+    const lastId = data.map(item => item.id)
+        .reduce((prev, next) => Math.max(prev ?? 0, next ?? 0), 0) ?? 0
+    newItem.id = lastId + 1
+    if (newItem.createdAt === undefined || newItem.createdAt === '') {
+        newItem.createdAt = moment().format('YYYY-MM-DD')
+    }
     data.push(newItem)
     window.localStorage.setItem('data', JSON.stringify(data))
 }
