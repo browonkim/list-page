@@ -39,7 +39,7 @@ onMounted(() => {
 })
 
 function onModalCancel() {
-  setModalProperties()
+  deactivateModal()
 }
 
 function onModalConfirm(action: CRUD, modifiedData: ListItem) {
@@ -57,7 +57,7 @@ function onCardEdit(id: number) {
   if (item == undefined) {
     throw new Error('there is no such item')
   }
-  setModalProperties(item.id, CRUD.update, item.title, item.description, item.tags, true)
+  activateModal(item.id, CRUD.update, item.title, item.description, item.tags)
 }
 
 function onCardDelete(itemId: number) {
@@ -73,6 +73,15 @@ function onCardDelete(itemId: number) {
   }).finally(() => {
     deleteCautionActivate.value = false
   })
+}
+
+function activateModal(id: number | undefined = undefined, action: CRUD = CRUD.nothing, title = '',
+                       description = '', tags: string[] = []) {
+  setModalProperties(id, action, title, description, tags, true)
+}
+
+function deactivateModal(){
+  setModalProperties(undefined, CRUD.nothing, '', '', [], false)
 }
 
 function setModalProperties(id: number | undefined = undefined, action: CRUD = CRUD.nothing,
