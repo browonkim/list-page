@@ -15,8 +15,8 @@
   box-sizing: border-box
   width: 100vw
   max-width: 100%
-  height: 40px
-  padding-top: 8px
+  height: 50px
+  padding-top: 15px
   padding-left: 5px
 
   border-bottom: 1px solid gray
@@ -24,7 +24,7 @@
   header
     h1
       font-family: 'libre bodoni', 'sans-serif'
-      font-size: 25px
+      font-size: 30px
       color: rgb(19, 86, 58)
       margin-left: 3px
 </style>
