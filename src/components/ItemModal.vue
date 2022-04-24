@@ -15,14 +15,13 @@
 </template>
 
 <script setup lang="ts">
-import {defineProps, ref} from "vue"
-import {CRUD} from "@/types/common-types"
+import {computed, defineEmits, defineProps, ref, watchEffect} from "vue"
+import {CRUD, ListItem} from "@/types/common-types"
 
 interface ModalProps {
+  item: ListItem
   action: CRUD,
-  title?: string,
-  description?: string,
-  tag: string[],
+  active: boolean
 }
 
 const props = defineProps<ModalProps>()
@@ -49,8 +48,8 @@ function activateModal() {
   isActivate.value = true;
 }
 
-function cancelModal() {
-  isActivate.value = false;
+function onConfirm() {
+  emits('confirm', props.action, modifiedItem.value)
 }
 </script>
 

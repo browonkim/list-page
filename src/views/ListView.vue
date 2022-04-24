@@ -17,6 +17,18 @@ import {ListItem} from "@/types/common-types";
 import ItemModal from "@/components/ItemModal.vue";
 
 const listItems = ref<Array<ListItem>>()
+const modalProperties = ref<ModalProps>({
+  item: {},
+  action: CRUD.nothing,
+  active: false
+})
+const deleteCautionActivate = ref(false)
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+const deleteCautionResolve = ref<(value: unknown) => void>(() => {
+})
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+const deleteCautionReject = ref<() => void>(() => {
+})
 
 onMounted(() => {
   axios.get('http://localhost:8080/api/list')

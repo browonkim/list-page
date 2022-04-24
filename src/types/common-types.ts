@@ -2,13 +2,20 @@ export enum CRUD {
     create,
     read,
     update,
-    delete
+    delete,
+    nothing
 }
 
 export interface ListItem {
-    id: number,
-    title: string,
-    description: string,
-    tags: string[],
-    createdAt: string
+    id?: number,
+    title?: string,
+    description?: string,
+    tags?: string[],
+    createdAt?: string
+}
+
+export interface ModalProps {
+    item: ListItem,
+    action: CRUD,
+    active: boolean
 }
