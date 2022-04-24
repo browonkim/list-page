@@ -88,9 +88,9 @@ $input-width: 340px
   height: 360px
   padding: 10px
   background-color: rgb(255, 255, 255)
-
   border: 1px solid black
   border-radius: 6px
+  z-index: 2
 
   h2
     font-size: 24px

@@ -38,6 +38,7 @@ function onDelete() {
   height: 100px
   padding: 10px
   background-color: rgb(255, 255, 255)
+  z-index: 3
 
   h2
     font-size: 18px

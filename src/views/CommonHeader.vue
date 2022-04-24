@@ -1,6 +1,6 @@
 <template>
   <div class="app-header">
-    <header><h1>Law&Good List</h1>
+    <header id="app-header"><h1>Law&Good List</h1>
       <slot></slot>
     </header>
   </div>
@@ -12,14 +12,19 @@
 
 <style scoped lang="sass">
 .app-header
+  position: sticky
+  top: 0
   box-sizing: border-box
   width: 100vw
   max-width: 100%
-  height: 50px
-  padding-top: 15px
+  height: 60px
+  padding-top: 20px
   padding-left: 5px
 
-  border-bottom: 1px solid gray
+  border-bottom: 1px solid #989797ff
+  box-shadow: 0 1px 5px 1px #dcdbdb
+  background-color: #ffffff
+  z-index: 1
 
   header
     h1
