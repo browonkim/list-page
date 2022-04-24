@@ -13,13 +13,14 @@
 
 ### 구현 항목
 
+* 리스트를 현재 화면 크기에 반응하여 한 행당 1개에서 5개의 요소가 존재하도록 했습니다. 해당 기능은 css의 @media 를 사용해서 구현했습니다.
+* Chrome devtool에서 반응형 화면 도구를 사용해서 각 디바이스에서의 레이아웃을 확인했습니다.
 * 요구사항에 따라 CSS 및 UI 관련 라이브러리를 사용하지 않았습니다.
 * Modal 의 경우 Vue3 의 Teleport 기능을 활용해보았습니다. ([참고했던 문서](https://vuejs.org/guide/built-ins/teleport.html))
 * Edit나 Add를 담당하는 ItemModal은 Emit과 Prop을 이용한 컴포넌트간 통신을 활용했습니다.
 * Delete 확인창인 DeleteCaution은 Promise의 reject, resolve를 이용해 처리해보았습니다.
 * 전역으로 사용하는 스타일은 `assets/styles.sass`파일에 저장하고, 컴포넌트 안에서만 사용될 스타일은 vue SFC(Single File Component)
-  의 `<style scoped lang="sass">`안에 지정했습니다. 이렇게 해서 각 컴포넌트의 스타일이 다른 컴포넌트에(특히 부모 자식간) 예상하지 못한 영향을 끼치는 것을 막고자했습니다.
-* 구현한 항목에 따라 git commit을 쪼개려고 노력했습니다.
+  의 `<style scoped lang="sass">`안에 지정했습니다. 이렇게 해서 각 컴포넌트의 스타일이 다른 컴포넌트에(특히 부모 자식간) 예상하지 못한 영향을 끼치는 것을 막았습니다.
 * typescript와 Vue Composition API를 써서 기능을 구현했습니다.
 
 ### Compiles and minifies for production
