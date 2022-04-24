@@ -1,7 +1,7 @@
 <template>
   <div class="list-view">
     <button class="add-item-button" @click="onClickAddButton"> Add</button>
-    <DeleteCaution :active="deleteCautionActivate" :resolve="deleteCautionResolve" :reject="deleteCautionReject"/>
+    <DeleteConfirm :active="deleteCautionActivate" :resolve="deleteCautionResolve" :reject="deleteCautionReject"/>
     <ItemModal :action="modalProperties.action" :active="modalProperties.active" :item="modalProperties.item"
                @cancel="onModalCancel" @confirm="onModalConfirm"/>
     <div class="list-container">
@@ -18,7 +18,7 @@ import {onMounted, ref} from "vue";
 import {CRUD, ListItem, ModalProps} from "@/types/common-types";
 import ItemModal from "@/components/ItemModal.vue";
 import {createItem, deleteItem, getData, updateItem} from "@/utils/localStorage-api";
-import DeleteCaution from "@/components/DeleteCaution.vue";
+import DeleteConfirm from "@/components/DeleteConfirm.vue";
 import moment from "moment";
 
 const listItems = ref<Array<ListItem>>()
