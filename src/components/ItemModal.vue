@@ -55,45 +55,32 @@ function onConfirm() {
 
 <style scoped lang="sass">
 $input-width: 340px
-.modal-container
-  position: absolute
-  display: flex
-  flex-direction: column
-  align-items: center
-  justify-content: center
-  top: 0
-  left: 0
-  width: 100vw
-  max-width: 100%
-  height: 100vh
-  background-color: rgba(0,0,0,.3)
+.item-modal
+  box-sizing: content-box
+  width: 350px
+  height: 360px
+  padding: 10px
+  background-color: rgb(255, 255, 255)
 
-  .item-modal
-    box-sizing: content-box
-    width: 350px
-    height: 360px
-    padding: 10px
-    background-color: rgb(255, 255, 255)
+  border: 1px solid black
+  border-radius: 6px
 
-    border: 1px solid black
-    border-radius: 6px
+  h2
+    font-size: 24px
+    margin-bottom: 10px
 
-    h2
-      font-size: 24px
-      margin-bottom: 10px
+  .input-title, .input-tag
+    display: block
+    width: $input-width
+    height: 25px
+    margin-bottom: 10px
 
-    .input-title, .input-tag
-      display: block
-      width: $input-width
-      height: 25px
-      margin-bottom: 10px
-
-    .input-description
-      display: block
-      box-sizing: border-box
-      width: $input-width + 8px
-      height: 200px
-      padding: 5px
-      resize: none
+  .input-description
+    display: block
+    box-sizing: border-box
+    width: $input-width + 8px
+    height: 200px
+    padding: 5px
+    resize: none
 
 </style>
