@@ -3,8 +3,11 @@
     <div class="modal-container" v-show="props.active" @wheel.prevent>
       <div class="item-modal">
         <h2>{{ headerLabel }}</h2>
-        <input placeholder="Title" class="input-title" v-model="localTitle">
-        <textarea placeholder="Description" class="input-description" v-model="localDescription"></textarea>
+        <div class="input-title">
+          <input placeholder="Title" class="input-title" v-model="localTitle" maxlength="40">
+        </div>
+        <textarea placeholder="Description" class="input-description" v-model="localDescription"
+                  maxlength="1000"/>
         <div class="button-container">
           <button @click="onCancel">CANCEL</button>
           <button @click="onConfirm">{{ getOkButtonLabel() }}</button>
@@ -37,8 +40,7 @@ watchEffect(() => {
   if (props.active) {
     localTitle.value = props.item.title
     localDescription.value = props.item.description
-  }
-  else {
+  } else {
     localTitle.value = ''
     localDescription.value = ''
   }
@@ -78,6 +80,14 @@ function onCancel() {
 function onConfirm() {
   emits('confirm', props.action, modifiedItem.value)
 }
+
+// function onInput($event: InputEvent) {
+//   const target = $event.target as HTMLInputElement
+//   if (target.value.length >= 40) {
+//     target.value = target.value.slice(0, 40)
+//   }
+//   localTitle.value = target.value
+// }
 </script>
 
 <style scoped lang="sass">
