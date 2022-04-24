@@ -88,11 +88,28 @@ function setModalProperties(id: number | undefined = undefined, action: CRUD = C
 </script>
 
 <style scoped lang="sass">
-.list-container
-  display: grid
+$width-of-a-card: 251px
+.list-view
+  display: flex
   width: 100vw
   max-width: 100%
+  padding-top: 10px
+  justify-content: center
 
-  .list-item
-    margin: 6px 3px 0 6px
+  .list-container
+    @media screen and (max-width: $width-of-a-card * 2)
+      width: $width-of-a-card
+    @media screen and (min-width: $width-of-a-card * 2)
+      width: $width-of-a-card * 2
+    @media screen and (min-width: $width-of-a-card * 3)
+      width: $width-of-a-card * 3
+    @media screen and (min-width: $width-of-a-card * 4)
+      width: $width-of-a-card * 4
+    @media screen and (min-width: $width-of-a-card * 5)
+      width: $width-of-a-card * 5
+    display: flex
+    flex-wrap: wrap
+
+    .list-item
+      margin: 6px 3px 0 6px
 </style>
