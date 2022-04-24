@@ -7,8 +7,8 @@
     <p class="summary">{{ props.listItem.description?.substring(0, 10) }}</p>
     <footer>
       <div class="button-container">
-        <button class="edit-button">Edit</button>
-        <button class="delete-button">Delete</button>
+        <button class="edit-button" @click="onEdit">Edit</button>
+        <button class="delete-button" @click="onDelete">Delete</button>
       </div>
       <p class="created-at">{{ props.listItem.createdAt }}</p>
     </footer>
@@ -16,26 +16,31 @@
 </template>
 
 <script setup lang="ts">
-import {defineProps} from "vue"
+import {defineProps, defineEmits} from "vue"
+import {ListItem} from "@/types/common-types";
 
-/*
-* 현재버전의 Vue3 + typescript 에서는 아래의 문법(reference interface)을 지원하지 않음
-* import {ListItem} from "@/types/CommonTypes";
-* const props = defineProps<ListItem>()
-* https://vuejs.org/guide/typescript/composition-api.html#typing-component-props
-*/
-
-interface ListItem {
-  id?: number,
-  description?: string,
-  title?: string,
-  tags?: string[],
-  createdAt?: string
-}
 interface cardContent {
   listItem: ListItem
 }
+
 const props = defineProps<cardContent>()
+
+const emits = defineEmits<{
+  (e: 'edit', id: number): void
+  (e: 'delete', id: number): void
+}>()
+
+function onEdit() {
+  if (props.listItem.id != undefined) {
+    emits('edit', props.listItem.id)
+  }
+}
+
+function onDelete() {
+  if (props.listItem.id != undefined) {
+    emits('delete', props.listItem.id)
+  }
+}
 </script>
 
 <style scoped lang="sass">
