@@ -154,4 +154,5 @@ $width-of-a-card: 251px
 
     .list-item
       margin: 6px 3px 0 6px
+      background-color: #ffffff
 </style>
