@@ -17,8 +17,9 @@ import ItemCard from '@/components/ItemCard.vue'
 import {onMounted, ref} from "vue";
 import {CRUD, ListItem, ModalProps} from "@/types/common-types";
 import ItemModal from "@/components/ItemModal.vue";
-import {deleteItem, getData, updateItem} from "@/utils/localStorage-api";
+import {createItem, deleteItem, getData, updateItem} from "@/utils/localStorage-api";
 import DeleteCaution from "@/components/DeleteCaution.vue";
+import moment from "moment";
 
 const listItems = ref<Array<ListItem>>()
 const modalProperties = ref<ModalProps>({
@@ -35,8 +36,18 @@ const deleteCautionReject = ref<() => void>(() => {
 })
 
 onMounted(() => {
-  listItems.value = getData()
+  updateList()
 })
+
+function updateList() {
+  listItems.value = getData().sort((a: ListItem, b: ListItem) => {
+        if (a.createdAt === b.createdAt) {
+          return (a.id ?? 0) > (b.id ?? 0) ? -1 : 1
+        }
+        return moment(a.createdAt).isAfter(b.createdAt) ? -1 : 1
+      }
+  )
+}
 
 function onClickAddButton() {
   activateModal(undefined, CRUD.create, '', '', [])
@@ -53,7 +64,7 @@ function onModalConfirm(action: CRUD, modifiedData: ListItem) {
     //todo
   }
   modalProperties.value.active = false
-  listItems.value = getData()
+  updateList()
 }
 
 function onCardEdit(id: number) {
@@ -71,7 +82,7 @@ function onCardDelete(itemId: number) {
     deleteCautionReject.value = reject
   }).then(() => {
     deleteItem(itemId)
-    listItems.value = getData()
+    updateList()
   }).catch(() => {
     // nothing
   }).finally(() => {
@@ -84,7 +95,7 @@ function activateModal(id: number | undefined = undefined, action: CRUD = CRUD.n
   setModalProperties(id, action, title, description, tags, true)
 }
 
-function deactivateModal(){
+function deactivateModal() {
   setModalProperties(undefined, CRUD.nothing, '', '', [], false)
 }
 
