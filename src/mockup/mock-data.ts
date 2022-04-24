@@ -1,17 +1,4 @@
-import {createServer} from 'miragejs'
-
-export function makeServer() {
-   return createServer({
-       routes() {
-           this.urlPrefix = 'http://localhost:8080'
-           this.get('/api/list', () => ({
-               list: mockData
-           }))
-       }
-   })
-}
-
-const mockData = [
+export const mockData = [
     {
         "id": "1",
         "title": "Item Title 1",
