@@ -1,5 +1,6 @@
 <template>
   <div class="list-view">
+    <button class="add-item-button"> Add </button>
     <DeleteCaution :active="deleteCautionActivate" :resolve="deleteCautionResolve" :reject="deleteCautionReject"/>
     <ItemModal :action="modalProperties.action" :active="modalProperties.active" :item="modalProperties.item"
                @cancel="onModalCancel" @confirm="onModalConfirm"/>
@@ -95,6 +96,23 @@ $width-of-a-card: 251px
   max-width: 100%
   padding-top: 10px
   justify-content: center
+
+  .add-item-button
+    color: #ffffff
+    font-family: roboto, sans-serif
+    font-size: 15px
+    position: fixed
+    top: 15px
+    right: 20px
+    z-index: 3
+
+    box-sizing: border-box
+    width: 50px
+    height: 30px
+
+    background-color: #477958
+    border: none
+    border-radius: 3px
 
   .list-container
     @media screen and (max-width: $width-of-a-card * 2)
