@@ -1,5 +1,5 @@
 <template>
-  <div class="item-card">
+  <div class="item-card-container">
     <h2>{{ props.listItem.title }}</h2>
     <div class="tag-container">
       <mark v-for="tag in props.listItem.tags" :key="tag">{{ tag }}</mark>
@@ -48,7 +48,7 @@ $button-padding-size: 5px 10px 5px 10px
 $card-width: 240px
 $card-padding-left: 10px
 
-.item-card
+.item-card-container
   font-size: 13px
   font-family: 'nanum gothic light', 'sans-serif'
 

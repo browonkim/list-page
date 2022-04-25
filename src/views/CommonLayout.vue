@@ -1,5 +1,5 @@
 <template>
-  <div class="common-layout">
+  <div class="common-layout-container">
     <CommonHeader/>
     <router-view/>
   </div>
@@ -11,7 +11,7 @@ import CommonHeader from "@/views/CommonHeader.vue"
 </script>
 
 <style scoped lang="sass">
-.common-layout
+.common-layout-container
   width: 100vw
   max-width: 100%
   margin: 0

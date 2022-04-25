@@ -1,5 +1,5 @@
 <template>
-  <div class="list-view">
+  <div class="list-view-container">
     <button class="add-item-button" @click="onClickAddButton"> Add</button>
     <DeleteConfirm :active="deleteCautionActivate" :resolve="deleteCautionResolve" :reject="deleteCautionReject"/>
     <ItemModal :action="modalProperties.action" :active="modalProperties.active" :item="modalProperties.item"
@@ -114,7 +114,7 @@ function setModalProperties(id: string | undefined = undefined, action: CRUD = C
 
 <style scoped lang="sass">
 $width-of-a-card: 251px
-.list-view
+.list-view-container
   display: flex
   width: 100vw
   max-width: 100%

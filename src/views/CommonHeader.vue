@@ -1,8 +1,6 @@
 <template>
-  <div class="app-header">
-    <header id="app-header"><h1>Law&Good List</h1>
-      <slot></slot>
-    </header>
+  <div class="common-header-container">
+    <header><h1>Law&Good List</h1></header>
   </div>
 </template>
 
@@ -11,7 +9,7 @@
 </script>
 
 <style scoped lang="sass">
-.app-header
+.common-header-container
   position: sticky
   top: 0
   box-sizing: border-box
