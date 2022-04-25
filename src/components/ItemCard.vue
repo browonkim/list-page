@@ -70,8 +70,15 @@ $card-padding-left: 10px
 
     margin-bottom: 1px
 
-  mark
-    margin-left: 10px
+    mark
+      font-size: 12px
+      font-weight: bold
+      margin-left: 1px
+      margin-right: 5px
+      padding: 1px 2px
+      border-radius: 3px
+      //noinspection SassScssResolvedByNameOnly
+      background-color: $item-tag-color
 
   .summary
     margin-left: 1px

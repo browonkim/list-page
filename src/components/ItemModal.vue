@@ -6,6 +6,7 @@
         <div class="input-title">
           <input placeholder="Title" class="input-title" v-model="localTitle" maxlength="40">
         </div>
+        <TagInput class="input-tags" :tags="localTags" @changeTags="onChangeTags"/>
         <textarea placeholder="Description" class="input-description" v-model="localDescription"
                   maxlength="1000"/>
         <div class="button-container">
@@ -20,6 +21,7 @@
 <script setup lang="ts">
 import {computed, defineEmits, defineProps, ref, watchEffect} from "vue"
 import {CRUD, ListItem} from "@/types/common-types"
+import TagInput from "@/components/TagInput.vue";
 
 interface ModalProps {
   item: ListItem
@@ -35,14 +37,17 @@ const emits = defineEmits<{
 
 const localTitle = ref(props.item.title)
 const localDescription = ref(props.item.description)
+const localTags = ref(props.item.tags)
 
 watchEffect(() => {
   if (props.active) {
     localTitle.value = props.item.title
     localDescription.value = props.item.description
+    localTags.value = props.item.tags?.slice()
   } else {
     localTitle.value = ''
     localDescription.value = ''
+    localTags.value = []
   }
 })
 
@@ -60,7 +65,7 @@ const modifiedItem = computed(() => {
     id: props.item.id,
     title: localTitle.value,
     description: localDescription.value,
-    tags: props.item.tags,
+    tags: localTags.value,
     createdAt: props.item.createdAt
   } as ListItem
 })
@@ -71,6 +76,10 @@ function getOkButtonLabel() {
   } else if (props.action === CRUD.update) {
     return 'EDIT'
   }
+}
+
+function onChangeTags(tags: string[]) {
+  localTags.value = tags
 }
 
 function onCancel() {
