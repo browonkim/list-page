@@ -1,9 +1,8 @@
 <template>
   <div class="tag-input-container">
-    <span class="tag" v-for="tag in tagList" :key="tag">{{ tag }}</span>
-    <input type="text" class="input-tag" @paste="onTagPaste" @keypress="onKeypress" @input="onInput"
-           @keydown="onKeyDown"
-           ref="input">
+    <mark v-for="tag in tagList" :key="tag" class="content-font">{{ tag }}</mark>
+    <input type="text" class="input-tag content-font" @paste="onPaste" @keypress="onKeypress" @input="onInput"
+           @keydown="onKeyDown" ref="input" :placeholder="placeHolder" @focusout="onFocusOut">
   </div>
 </template>
 
@@ -93,12 +92,17 @@ function onKeyDown($event: KeyboardEvent) {
     &:focus
       outline: none
 
-  .tag
+  mark
     //noinspection SassScssResolvedByNameOnly
     background-color: $item-tag-color
     font-size: 13px
     margin-right: 5px
     border-radius: 3px
+    padding: 1px
+    margin-bottom: 3px
+
+    &:first-of-type
+      margin-left: 5px
 
     &:last-of-type
       margin-right: 0
