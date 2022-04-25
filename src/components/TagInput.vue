@@ -106,8 +106,11 @@ function onFocusOut() {
   width: 20px
   height: 28px
   padding-left: 5px
-  border: 1px solid black
+  border: 1px solid #ababab
   border-radius: 2px
+  &:focus-within
+    outline: none
+    border: 1px outset #004611
   background-color: white
 
   .input-tag
