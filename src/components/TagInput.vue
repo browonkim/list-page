@@ -103,11 +103,17 @@ function onFocusOut() {
 
 <style scoped lang="sass">
 .tag-input-container
+  width: 20px
+  height: 28px
+  padding-left: 5px
   border: 1px solid black
   border-radius: 2px
+  background-color: white
 
   .input-tag
     display: inline
+    height: 20px
+    padding-left: 5px
     border: 0
     font-size: 13px
     background-color: rgba(255, 255, 255, 0)

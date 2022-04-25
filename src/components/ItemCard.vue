@@ -113,6 +113,9 @@ $card-padding-left: 10px
     &:hover
       background-color: #ff7d7d
 
+    &:active
+      background-color: #ef1010
+
   footer
     display: flex
     width: $card-width - 5px
