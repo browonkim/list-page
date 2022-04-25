@@ -1,13 +1,14 @@
 <template>
   <div class="list-view-container">
     <button class="add-item-button" @click="onClickAddButton"> Add</button>
-    <DeleteConfirm :active="deleteCautionActivate" :resolve="deleteCautionResolve" :reject="deleteCautionReject"/>
+    <DeleteConfirm :active="deleteConfirmActivate" :resolve="deleteConfirmResolve" :reject="deleteConfirmReject"
+                   :title="deleteConfirmTitle"/>
     <ItemModal :action="modalProperties.action" :active="modalProperties.active" :item="modalProperties.item"
                @cancel="onModalCancel" @confirm="onModalConfirm"/>
     <div class="list-container">
       <ItemCard v-for="item in listItems" :key="item.id" :listItem="item" class="list-item"
                 @edit="onCardEdit(item.id)"
-                @delete="onCardDelete(item.id)"/>
+                @delete="onCardDelete(item.id)" @click="onCardClick(item)"/>
     </div>
   </div>
 </template>
@@ -20,6 +21,7 @@ import ItemModal from "@/components/ItemModal.vue";
 import {createItem, deleteItem, getData, updateItem} from "@/utils/localStorage-api";
 import DeleteConfirm from "@/components/DeleteConfirm.vue";
 import moment from "moment";
+import {useRouter} from "vue-router";
 
 const listItems = ref<Array<ListItem>>()
 const modalProperties = ref<ModalProps>({
@@ -27,12 +29,13 @@ const modalProperties = ref<ModalProps>({
   action: CRUD.nothing,
   active: false
 })
-const deleteCautionActivate = ref(false)
+const deleteConfirmActivate = ref(false)
+const deleteConfirmTitle = ref('')
 // eslint-disable-next-line @typescript-eslint/no-empty-function
-const deleteCautionResolve = ref<(value: unknown) => void>(() => {
+const deleteConfirmResolve = ref<(value: unknown) => void>(() => {
 })
 // eslint-disable-next-line @typescript-eslint/no-empty-function
-const deleteCautionReject = ref<() => void>(() => {
+const deleteConfirmReject = ref<() => void>(() => {
 })
 
 onMounted(() => {
@@ -77,16 +80,25 @@ function onCardEdit(id: string) {
 
 function onCardDelete(itemId: string) {
   new Promise((resolve, reject) => {
-    deleteCautionActivate.value = true
-    deleteCautionResolve.value = resolve
-    deleteCautionReject.value = reject
+    deleteConfirmActivate.value = true
+    deleteConfirmTitle.value = listItems.value?.find(item => item.id === itemId)?.title ?? ''
+    deleteConfirmResolve.value = resolve
+    deleteConfirmReject.value = reject
   }).then(() => {
     deleteItem(itemId)
     updateList()
   }).catch(() => {
     // nothing
   }).finally(() => {
-    deleteCautionActivate.value = false
+    deleteConfirmActivate.value = false
+  })
+}
+
+const router = useRouter()
+
+function onCardClick(item: ListItem) {
+  router.push({
+    path: `/detail/${item.id}`,
   })
 }
 
@@ -139,9 +151,9 @@ $width-of-a-card: 251px
     border-radius: 3px
 
   .list-container
-    @media screen and (max-width: $width-of-a-card * 2)
+    @media screen and (max-width: 515px)
       width: $width-of-a-card
-    @media screen and (min-width: $width-of-a-card * 2)
+    @media screen and (min-width: 515px)
       width: $width-of-a-card * 2
     @media screen and (min-width: $width-of-a-card * 3)
       width: $width-of-a-card * 3
