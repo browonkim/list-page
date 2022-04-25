@@ -21,13 +21,13 @@
 
   border-bottom: 1px solid #989797ff
   box-shadow: 0 1px 5px 1px #dcdbdb
-  background-color: #ffffff
+  background-color: rgba(252, 249, 238, 0.81)
   z-index: 1
 
   header
     h1
       font-family: 'libre bodoni', 'sans-serif'
       font-size: 30px
-      color: rgb(19, 86, 58)
+      color: #13563aff
       margin-left: 3px
 </style>

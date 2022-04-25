@@ -106,11 +106,16 @@ $input-width: 340px
     font-size: 24px
     margin-bottom: 10px
 
-  .input-title, .input-tag
+  .input-title
     display: block
     width: $input-width
     height: 25px
     margin-bottom: 10px
+
+  .input-tags
+    width: $input-width + 6px
+    margin-bottom: 5px
+    padding: 2px 0 2px 1px
 
   .input-description
     display: block
