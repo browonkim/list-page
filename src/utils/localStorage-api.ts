@@ -39,3 +39,8 @@ export function getData(): ListItem[] {
     }
     return JSON.parse(rawData) as Array<ListItem>
 }
+
+export function findItem(id: string): ListItem | undefined {
+    return getData().find(item => item.id == id)
+}
+
