@@ -7,8 +7,8 @@
     <p class="summary">{{ props.listItem.description?.substring(0, 10) }}</p>
     <footer>
       <div class="button-container">
-        <button class="edit-button" @click="onEdit">Edit</button>
-        <button class="delete-button" @click="onDelete">Delete</button>
+        <button class="edit-button" @click.stop="onEdit">Edit</button>
+        <button class="delete-button" @click.stop="onDelete">Delete</button>
       </div>
       <p class="created-at">{{ props.listItem.createdAt }}</p>
     </footer>
