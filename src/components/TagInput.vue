@@ -56,6 +56,20 @@ function onKeypress($event: KeyboardEvent) {
   }
 }
 
+function onPaste($event: ClipboardEvent) {
+  const pastedString = $event.clipboardData?.getData('text')
+  const concatenatedString = (tagInputString.value ?? '') + (pastedString ?? '')
+  if (concatenatedString.trim() === '') {
+    return
+  }
+  if (tagList.value.length < 3) {
+    tagList.value.push(...pastedString?.split(' ').slice(0, 3 - tagList.value.length) ?? [])
+  }
+  if (input.value) {
+    input.value.value = ''
+  }
+}
+
 function onInput($event: InputEvent) {
   if (tagList.value.length === 3) {
     if (input.value) {
