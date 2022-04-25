@@ -12,8 +12,8 @@ onBeforeMount(() => {
   if (window.confirm('주의: 확인을 누르면 현재 로컬스토리지의 데이터가 초기화됩니다.')) {
     localStorage.clear()
     window.localStorage.setItem('data', JSON.stringify(mockData))
-    router.replace('/')
   }
+  router.replace('/')
 })
 </script>
 
