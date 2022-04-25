@@ -28,6 +28,13 @@ watch(tagList.value, () => {
   emits('changeTags', tagList.value)
 })
 
+const placeHolder = computed(() => {
+  if (tagList.value?.length === 0 && !input.value?.value) {
+    return 'Tag'
+  }
+  return ''
+})
+
 onBeforeUpdate(() => {
   tagList.value = props.tags
 })
@@ -52,12 +59,12 @@ function onKeypress($event: KeyboardEvent) {
 
 function onInput($event: InputEvent) {
   if (tagList.value.length === 3) {
-    if (input.value != null) {
+    if (input.value) {
       input.value.value = ''    // disable input
     }
   }
   if ($event.data === ' ') {
-    if (input.value != null) {
+    if (input.value) {
       input.value.value = ''
     }
     return
