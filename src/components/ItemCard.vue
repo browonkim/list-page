@@ -4,7 +4,7 @@
     <div class="tag-container">
       <mark v-for="tag in props.listItem.tags" :key="tag">{{ tag }}</mark>
     </div>
-    <p class="summary">{{ props.listItem.description?.substring(0, 10) }}</p>
+    <p class="summary">{{ props.listItem.description }}</p>
     <footer>
       <div class="button-container">
         <button class="edit-button" @click.stop="onEdit">Edit</button>
@@ -51,24 +51,29 @@ $card-padding-left: 10px
 .item-card-container
   font-size: 13px
   font-family: 'nanum gothic light', 'sans-serif'
-
   position: relative
-
   box-sizing: border-box
   width: $card-width
   height: 9rem
   padding: 10px 10px 10px 10px
-
   border: 1px solid gainsboro
   border-radius: 0.3rem
-
   box-shadow: 1px 1px 5px 3px #f5f5f5
 
   h2
     font-family: 'nanum gothic', 'sans-serif'
-    font-size: 28px
-
+    font-size: 20px
     margin-bottom: 1px
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
+
+  h2::-webkit-scrollbar
+    display: none
+    direction: rtl
+
+  .tag-container
+    margin: 5px 0
 
     mark
       font-size: 12px
@@ -82,23 +87,32 @@ $card-padding-left: 10px
 
   .summary
     margin-left: 1px
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
 
   button
     margin-right: 5px
 
   .edit-button
     padding: $button-padding-size
-
     border: none
     border-radius: 2px
-
     background-color: #92e7ac
+
+    &:hover
+      background-color: #57d381
+
+    &:active
+      background-color: #7bb492
 
   .delete-button
     padding: $button-padding-size
-
     border: none
     border-radius: 2px
+
+    &:hover
+      background-color: #ff7d7d
 
   footer
     display: flex
