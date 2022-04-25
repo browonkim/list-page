@@ -1,7 +1,7 @@
 <template>
   <div class="list-view-container">
     <button class="add-item-button" @click="onClickAddButton"> Add</button>
-    <DeleteConfirm :active="deleteConfirmActivate" :resolve="deleteConfirmResolve" :reject="deleteConfirmReject"
+    <DeleteConfirm :active="deleteConfirmActive" :resolve="deleteConfirmResolve" :reject="deleteConfirmReject"
                    :title="deleteConfirmTitle"/>
     <ItemModal :action="modalProperties.action" :active="modalProperties.active" :item="modalProperties.item"
                @cancel="onModalCancel" @confirm="onModalConfirm"/>
@@ -29,14 +29,12 @@ const modalProperties = ref<ModalProps>({
   action: CRUD.nothing,
   active: false
 })
-const deleteConfirmActivate = ref(false)
+const deleteConfirmActive = ref(false)
 const deleteConfirmTitle = ref('')
 // eslint-disable-next-line @typescript-eslint/no-empty-function
-const deleteConfirmResolve = ref<(value: unknown) => void>(() => {
-})
+const deleteConfirmResolve = ref<(value: unknown) => void>(() => {})
 // eslint-disable-next-line @typescript-eslint/no-empty-function
-const deleteConfirmReject = ref<() => void>(() => {
-})
+const deleteConfirmReject = ref<() => void>(() => {})
 
 onMounted(() => {
   updateList()
@@ -80,7 +78,7 @@ function onCardEdit(id: string) {
 
 function onCardDelete(itemId: string) {
   new Promise((resolve, reject) => {
-    deleteConfirmActivate.value = true
+    deleteConfirmActive.value = true
     deleteConfirmTitle.value = listItems.value?.find(item => item.id === itemId)?.title ?? ''
     deleteConfirmResolve.value = resolve
     deleteConfirmReject.value = reject
@@ -88,9 +86,9 @@ function onCardDelete(itemId: string) {
     deleteItem(itemId)
     updateList()
   }).catch(() => {
-    // nothing
+    // canceled
   }).finally(() => {
-    deleteConfirmActivate.value = false
+    deleteConfirmActive.value = false
   })
 }
 
