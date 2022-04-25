@@ -90,6 +90,15 @@ function onKeyDown($event: KeyboardEvent) {
     tagList.value.pop()
   }
 }
+
+function onFocusOut() {
+  if (input.value && input.value.value) {
+    if (tagList.value.length < 3) {
+      tagList.value.push(input.value.value)
+      input.value.value = ''
+    }
+  }
+}
 </script>
 
 <style scoped lang="sass">
