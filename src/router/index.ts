@@ -14,6 +14,11 @@ const routes: Array<RouteRecordRaw> = [
             name: 'detail',
             component: () => import(/* webpackChunkName: "detail"*/ '@/views/DetailView.vue'),
         }]
+    },
+    {
+        path: '/reset/all',
+        name: 'reset',
+        component: () => import('@/reset/ResetData.vue')
     }
 ]
 
