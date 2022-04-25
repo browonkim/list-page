@@ -26,8 +26,8 @@ interface cardContent {
 const props = defineProps<cardContent>()
 
 const emits = defineEmits<{
-  (e: 'edit', id: number): void
-  (e: 'delete', id: number): void
+  (e: 'edit', id: string): void
+  (e: 'delete', id: string): void
 }>()
 
 function onEdit() {

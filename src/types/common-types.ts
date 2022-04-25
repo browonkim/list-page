@@ -7,7 +7,7 @@ export enum CRUD {
 }
 
 export interface ListItem {
-    id?: number,
+    id?: string,
     title?: string,
     description?: string,
     tags?: string[],

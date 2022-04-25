@@ -4,8 +4,8 @@ import moment from "moment";
 export function createItem(newItem: ListItem) {
     const data = getData()
     const lastId = data.map(item => item.id)
-        .reduce((prev, next) => Math.max(prev ?? 0, next ?? 0), 0) ?? 0
-    newItem.id = lastId + 1
+        .reduce((prev, next) => Math.max(prev, parseInt(next ?? '0')), 0)
+    newItem.id = (lastId + 1).toString()
     if (newItem.createdAt === undefined || newItem.createdAt === '') {
         newItem.createdAt = moment().format('YYYY-MM-DD')
     }
@@ -13,7 +13,7 @@ export function createItem(newItem: ListItem) {
     window.localStorage.setItem('data', JSON.stringify(data))
 }
 
-export function deleteItem(itemId: number) {
+export function deleteItem(itemId: string) {
     const data = getData()
     const modifiedData = data.filter((item: ListItem) => item.id !== itemId)
     window.localStorage.setItem('data', JSON.stringify(modifiedData))

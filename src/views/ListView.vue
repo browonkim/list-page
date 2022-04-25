@@ -67,7 +67,7 @@ function onModalConfirm(action: CRUD, data: ListItem) {
   updateList()
 }
 
-function onCardEdit(id: number) {
+function onCardEdit(id: string) {
   const item: ListItem | undefined = listItems.value?.find((item: ListItem) => item.id === id)
   if (item == undefined) {
     throw new Error('there is no such item')
@@ -75,7 +75,7 @@ function onCardEdit(id: number) {
   activateModal(item.id, CRUD.update, item.title, item.description, item.tags)
 }
 
-function onCardDelete(itemId: number) {
+function onCardDelete(itemId: string) {
   new Promise((resolve, reject) => {
     deleteCautionActivate.value = true
     deleteCautionResolve.value = resolve
@@ -90,7 +90,7 @@ function onCardDelete(itemId: number) {
   })
 }
 
-function activateModal(id: number | undefined = undefined, action: CRUD = CRUD.nothing, title = '',
+function activateModal(id: string | undefined = undefined, action: CRUD = CRUD.nothing, title = '',
                        description = '', tags: string[] = []) {
   setModalProperties(id, action, title, description, tags, true)
 }
@@ -99,7 +99,7 @@ function deactivateModal() {
   setModalProperties(undefined, CRUD.nothing, '', '', [], false)
 }
 
-function setModalProperties(id: number | undefined = undefined, action: CRUD = CRUD.nothing,
+function setModalProperties(id: string | undefined = undefined, action: CRUD = CRUD.nothing,
                             title = '', description = '',
                             tags: string[] = [], active = false) {
   modalProperties.value.item.id = id
