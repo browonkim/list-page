@@ -12,8 +12,7 @@ import {
   defineProps,
   defineEmits,
   ref,
-  watchEffect,
-  onBeforeUpdate
+  onBeforeUpdate, watch, computed
 } from "vue"
 
 const input = ref<HTMLInputElement | null>(null)
@@ -25,7 +24,7 @@ const emits = defineEmits<{
   (e: 'changeTags', tags: string[]): void
 }>()
 
-watchEffect(() => {
+watch(tagList.value, () => {
   emits('changeTags', tagList.value)
 })
 
