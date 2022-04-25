@@ -32,15 +32,15 @@ export function updateItem(updatedItem: ListItem) {
     window.localStorage.setItem('data', JSON.stringify(data))
 }
 
+export function findItem(id: string): ListItem | undefined {
+    return getData().find(item => item.id == id)
+}
+
 export function getData(): ListItem[] {
     const rawData = window.localStorage.getItem('data')
     if (rawData == null || rawData === '') {
         throw new Error('there is no data in local storage')
     }
     return JSON.parse(rawData) as Array<ListItem>
-}
-
-export function findItem(id: string): ListItem | undefined {
-    return getData().find(item => item.id == id)
 }
 
