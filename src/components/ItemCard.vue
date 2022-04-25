@@ -1,16 +1,16 @@
 <template>
   <div class="item-card-container">
-    <h2>{{ props.listItem.title }}</h2>
+    <h2 class="item-title content-font">{{ props.listItem.title }}</h2>
     <div class="tag-container">
-      <mark v-for="tag in props.listItem.tags" :key="tag">{{ tag }}</mark>
+      <mark v-for="tag in props.listItem.tags" :key="tag" class="content-font">{{ tag }}</mark>
     </div>
     <p class="summary">{{ props.listItem.description }}</p>
     <footer>
       <div class="button-container">
-        <button class="edit-button" @click.stop="onEdit">Edit</button>
-        <button class="delete-button" @click.stop="onDelete">Delete</button>
+        <button class="edit-button ui-font" @click.stop="onEdit">Edit</button>
+        <button class="delete-button ui-font" @click.stop="onDelete">Delete</button>
       </div>
-      <p class="created-at">{{ props.listItem.createdAt }}</p>
+      <p class="created-at content-font">{{ props.listItem.createdAt }}</p>
     </footer>
   </div>
 </template>
@@ -50,7 +50,6 @@ $card-padding-left: 10px
 
 .item-card-container
   font-size: 13px
-  font-family: 'nanum gothic light', 'sans-serif'
   position: relative
   box-sizing: border-box
   width: $card-width
@@ -60,15 +59,14 @@ $card-padding-left: 10px
   border-radius: 0.3rem
   box-shadow: 1px 1px 5px 3px #f5f5f5
 
-  h2
-    font-family: 'nanum gothic', 'sans-serif'
+  .item-title
     font-size: 20px
     margin-bottom: 1px
     white-space: nowrap
     overflow: hidden
     text-overflow: ellipsis
 
-  h2::-webkit-scrollbar
+  .item-title::-webkit-scrollbar
     display: none
     direction: rtl
 
@@ -86,6 +84,7 @@ $card-padding-left: 10px
       background-color: $item-tag-color
 
   .summary
+    font-family: "nanum gothic light", sans-serif
     margin-left: 1px
     white-space: nowrap
     overflow: hidden

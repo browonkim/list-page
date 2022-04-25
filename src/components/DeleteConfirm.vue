@@ -2,7 +2,7 @@
   <teleport to="body">
     <div class="modal-container" v-show="props.active">
       <div class="delete-confirm">
-        <h2>Are you sure you want to delete<span v-if="title.length > 0">&nbsp;<span class="delete-item-title">{{
+        <h2 class="content-font">Are you sure you want to delete<span v-if="title.length > 0">&nbsp;<span class="delete-item-title">{{
             title
           }}</span></span>?
         </h2>
@@ -63,7 +63,6 @@ function onDelete() {
 
   h2
     font-size: 18px
-    font-family: 'nanum gothic', 'sans-serif'
 
     .delete-item-title
       font-size: 16px
