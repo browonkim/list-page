@@ -1,7 +1,7 @@
 <template>
   <teleport to="body">
-    <div class="modal-container" v-show="props.active">
-      <div class="item-modal" @wheel.capture="()=>null">
+    <div class="modal-container" v-show="props.active" @keydown="onKeyDown">
+      <div class="item-modal">
         <h2 class="content-font">{{ headerLabel }}</h2>
         <input placeholder="Title" class="input-title content-font" v-model="localTitle" maxlength="40">
         <TagInput class="input-tags" :tags="localTags" @changeTags="onChangeTags"/>
@@ -88,6 +88,12 @@ function onCancel() {
 
 function onConfirm() {
   emits('confirm', props.action, modifiedItem.value)
+}
+
+function onKeyDown($event: KeyboardEvent){
+  if($event.key === 'Escape') {
+    onCancel()
+  }
 }
 
 // function onInput($event: InputEvent) {
