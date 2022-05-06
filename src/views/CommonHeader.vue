@@ -1,6 +1,6 @@
 <template>
   <div class="common-header-container">
-    <header><h1>Law&Good List</h1></header>
+    <header><h1>List</h1></header>
   </div>
 </template>
 

@@ -32,7 +32,7 @@ export function updateItem(updatedItem: ListItem) {
     window.localStorage.setItem('data', JSON.stringify(data))
 }
 
-export function findItem(id: string): ListItem | undefined {
+export function findItem(id: string): ListItem | void {
     return getData().find(item => item.id == id)
 }
 
