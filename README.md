@@ -1,4 +1,4 @@
-# Law & Good FE Assignments
+# List Page 
 
 ### 프로젝트 개요
 
